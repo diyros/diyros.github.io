@@ -2516,7 +2516,7 @@
                         </label>
                         <div class="notification-controls">
                             <button type="button" class="btn btn-notification-config"
-                                onclick="openTelegramConfigModal()">⚙️通知配置</button>
+                                onclick="openTelegramConfigModal()">⚙️参数配置</button>
                         </div>
                     </div>
 
@@ -2527,7 +2527,7 @@
                         </label>
                         <div class="notification-controls">
                             <button type="button" class="btn btn-notification-config"
-                                onclick="openCloudflareConfigModal()">⚙️通知配置</button>
+                                onclick="openCloudflareConfigModal()">⚙️参数配置</button>
                         </div>
                     </div>
 
@@ -2694,8 +2694,8 @@
             <div class="form-group subapi-form-group">
                 <label>请求方案</label>
                 <select id="cloudflareAuthMethod" title="请求方案" onchange="updateCloudflareAuthMethod()">
-                    <option value="email">Email + Global API Key</option>
                     <option value="accountid">Account ID + API Token</option>
+                    <option value="email">Email + Global API Key</option>
                 </select>
             </div>
 
@@ -4130,7 +4130,7 @@
             document.getElementById('cloudflareConfigModal').classList.add('show');
 
             // 默认选择第一个方案
-            document.getElementById('cloudflareAuthMethod').value = 'email';
+            document.getElementById('cloudflareAuthMethod').value = 'accountid';
             updateCloudflareAuthMethod();
 
             // 清空输入框
