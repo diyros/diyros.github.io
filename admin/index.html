@@ -1180,14 +1180,16 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
-            cursor: pointer
+            cursor: pointer;
+            gap: 10px;
         }
 
         .module-title .collapse-icon {
             width: 24px;
             height: 24px;
             transition: transform 0.28s;
-            fill: #666
+            fill: #666;
+            flex-shrink: 0;
         }
 
         .module.collapsed .collapse-icon {
@@ -2355,6 +2357,631 @@
         html.dark-mode .qrcode-container {
             background: #FFFFFF;
         }
+
+        /* 网络信息卡片样式 */
+        .port-info {
+            margin-top: 30px;
+            padding: 0 20px;
+        }
+
+        .port-info>h3 {
+            font-size: 20px;
+            font-weight: 600;
+            margin-bottom: 20px;
+            color: #333;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        html.dark-mode .port-info>h3 {
+            color: #e0e0e0;
+        }
+
+        .network-cards-container {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 16px;
+            margin-bottom: 10px;
+        }
+
+        .network-card {
+            background: rgba(255, 255, 255, 0.6);
+            -webkit-backdrop-filter: blur(10px);
+            backdrop-filter: blur(10px);
+            border-radius: 12px;
+            padding: 20px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.08), 0 0 0 1px rgba(255, 255, 255, 0.1) inset;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            overflow: hidden;
+            position: relative;
+            border-left: 4px solid transparent;
+        }
+
+        .network-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(250, 171, 65, 0.1), transparent);
+            transition: left 0.5s;
+        }
+
+        .network-card:hover {
+            box-shadow: 0 8px 12px rgba(0, 0, 0, 0.12), 0 0 12px rgba(250, 171, 65, 0.08);
+            transform: translateY(-4px);
+            border-left-color: #faab41;
+        }
+
+        .network-card:hover::before {
+            left: 100%;
+        }
+
+        html.dark-mode .network-card {
+            background: rgba(39, 39, 39, 0.7);
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3), 0 0 0 1px rgba(255, 255, 255, 0.05) inset;
+            border-left-color: transparent;
+        }
+
+        html.dark-mode .network-card:hover {
+            box-shadow: 0 8px 12px rgba(0, 0, 0, 0.4), 0 0 12px rgba(250, 171, 65, 0.15);
+            border-left-color: #faab41;
+        }
+
+        .network-card-title {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 16px;
+            font-weight: 600;
+            margin-bottom: 12px;
+            color: #333;
+        }
+
+        html.dark-mode .network-card-title {
+            color: #e0e0e0;
+        }
+
+        .status-indicator {
+            display: inline-block;
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            animation: none;
+        }
+
+        .status-indicator.status-loading {
+            background-color: #ffa500;
+            box-shadow: 0 0 5px #ffa500;
+            animation: pulse 1.5s infinite;
+        }
+
+        .status-indicator.status-success {
+            background-color: #4caf50;
+            box-shadow: 0 0 5px #4caf50;
+        }
+
+        .status-indicator.status-error {
+            background-color: #f44336;
+            box-shadow: 0 0 5px #f44336;
+        }
+
+        @keyframes pulse {
+
+            0%,
+            100% {
+                opacity: 1;
+            }
+
+            50% {
+                opacity: 0.5;
+            }
+        }
+
+        .network-info-content {
+            padding-left: 20px;
+        }
+
+        .ip-text {
+            font-size: 18px;
+            font-weight: 700;
+            color: #333;
+            word-break: break-all;
+            margin-bottom: 8px;
+            cursor: default;
+            transition: all 0.2s;
+        }
+
+        html.dark-mode .ip-text {
+            color: #ffffff;
+        }
+
+        .ip-text.clickable {
+            cursor: pointer;
+            color: #2196F3;
+        }
+
+        .ip-text.clickable:hover {
+            color: #1976D2;
+        }
+
+        html.dark-mode .ip-text.clickable {
+            color: #64B5F6;
+        }
+
+        html.dark-mode .ip-text.clickable:hover {
+            color: #90CAF9;
+        }
+
+        .ip-text .error {
+            color: #f44336;
+            font-size: 14px;
+        }
+
+        .location-text {
+            display: flex;
+            gap: 15px;
+            margin-bottom: 8px;
+            font-size: 14px;
+            color: #666;
+        }
+
+        html.dark-mode .location-text {
+            color: #b0b0b0;
+        }
+
+        .country-text,
+        .city-text {
+            flex: 1;
+        }
+
+        .network-tip {
+            font-size: 12px;
+            color: #999;
+            margin-top: 8px;
+        }
+
+        html.dark-mode .network-tip {
+            color: #999;
+        }
+
+        .loading-spinner {
+            display: inline-block;
+            width: 14px;
+            height: 14px;
+            border: 2px solid #f3f3f3;
+            border-top: 2px solid #2196F3;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+            margin-left: 8px;
+            vertical-align: middle;
+        }
+
+        @keyframes spin {
+            0% {
+                transform: rotate(0deg);
+            }
+
+            100% {
+                transform: rotate(360deg);
+            }
+        }
+
+        /* IP 详情弹窗样式 */
+        .ip-detail-modal {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.7);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 10000;
+            padding: 20px;
+            overflow-y: auto;
+        }
+
+        .ip-detail-content {
+            background: white;
+            border-radius: 12px;
+            max-width: 700px;
+            width: 100%;
+            max-height: 90vh;
+            overflow-y: auto;
+            padding: 30px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+            position: relative;
+            animation: slideUp 0.3s ease-out;
+        }
+
+        @keyframes slideUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        html.dark-mode .ip-detail-content {
+            background: #2c2c2c;
+            color: #e0e0e0;
+        }
+
+        .ip-detail-close {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            background: none;
+            border: none;
+            font-size: 28px;
+            cursor: pointer;
+            color: #666;
+            transition: color 0.2s;
+        }
+
+        .ip-detail-close:hover {
+            color: #f44336;
+        }
+
+        html.dark-mode .ip-detail-close {
+            color: #b0b0b0;
+        }
+
+        .ip-detail-title {
+            font-size: 22px;
+            font-weight: 700;
+            margin-bottom: 20px;
+            color: #333;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        html.dark-mode .ip-detail-title {
+            color: #ffffff;
+        }
+
+        .ip-detail-source {
+            font-size: 12px;
+            color: #999;
+            font-weight: 400;
+        }
+
+        html.dark-mode .ip-detail-source {
+            color: #999;
+        }
+
+        .ip-detail-section {
+            margin-bottom: 20px;
+            border-bottom: 1px solid #e0e0e0;
+            padding-bottom: 20px;
+        }
+
+        html.dark-mode .ip-detail-section {
+            border-bottom-color: #444;
+        }
+
+        .ip-detail-section:last-child {
+            border-bottom: none;
+        }
+
+        .ip-detail-section-title {
+            font-size: 16px;
+            font-weight: 600;
+            margin-bottom: 12px;
+            color: #333;
+        }
+
+        html.dark-mode .ip-detail-section-title {
+            color: #e0e0e0;
+        }
+
+        .ip-detail-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 8px 0;
+            font-size: 14px;
+        }
+
+        .ip-detail-label {
+            color: #666;
+            font-weight: 500;
+            min-width: 120px;
+        }
+
+        html.dark-mode .ip-detail-label {
+            color: #b0b0b0;
+        }
+
+        .ip-detail-value {
+            text-align: right;
+            color: #333;
+            flex: 1;
+            word-break: break-all;
+        }
+
+        html.dark-mode .ip-detail-value {
+            color: #e0e0e0;
+        }
+
+        .ip-detail-badge {
+            display: inline-block;
+            padding: 4px 12px;
+            border-radius: 16px;
+            font-size: 12px;
+            font-weight: 600;
+            text-align: center;
+        }
+
+        .badge-success {
+            background-color: #e8f5e9;
+            color: #2e7d32;
+        }
+
+        .badge-info {
+            background-color: #e3f2fd;
+            color: #1565c0;
+        }
+
+        .badge-warning {
+            background-color: #fff3e0;
+            color: #e65100;
+        }
+
+        .badge-danger {
+            background-color: #ffebee;
+            color: #c62828;
+        }
+
+        .badge-high {
+            background-color: #ffe0b2;
+            color: #e65100;
+        }
+
+        .badge-critical {
+            background-color: #ffcdd2;
+            color: #b71c1c;
+        }
+
+        .badge-elevated {
+            background-color: #fff9c4;
+            color: #f57f17;
+        }
+
+        .badge-low {
+            background-color: #c8e6c9;
+            color: #1b5e20;
+        }
+
+        .badge-verylow {
+            background-color: #a5d6a7;
+            color: #00320c;
+        }
+
+        html.dark-mode .badge-success {
+            background-color: #1b5e20;
+            color: #81c784;
+        }
+
+        html.dark-mode .badge-info {
+            background-color: #0d47a1;
+            color: #64b5f6;
+        }
+
+        html.dark-mode .badge-warning {
+            background-color: #e65100;
+            color: #ffb74d;
+        }
+
+        html.dark-mode .badge-danger {
+            background-color: #b71c1c;
+            color: #ef5350;
+        }
+
+        /* 风险等级文本样式 */
+        .success-text {
+            color: #2e7d32;
+        }
+
+        .warning-text {
+            color: #e65100;
+        }
+
+        .danger-text {
+            color: #c62828;
+        }
+
+        html.dark-mode .success-text {
+            color: #81c784;
+        }
+
+        html.dark-mode .warning-text {
+            color: #ffb74d;
+        }
+
+        html.dark-mode .danger-text {
+            color: #ef5350;
+        }
+
+        /* 评分算法说明气泡 */
+        .score-help-icon {
+            display: inline-block;
+            width: 18px;
+            height: 18px;
+            line-height: 18px;
+            text-align: center;
+            background-color: #2196F3;
+            color: white;
+            border-radius: 50%;
+            cursor: pointer;
+            font-size: 12px;
+            font-weight: bold;
+            transition: background-color 0.2s;
+        }
+
+        .score-help-icon:hover {
+            background-color: #1976D2;
+        }
+
+        html.dark-mode .score-help-icon {
+            background-color: #1976D2;
+        }
+
+        html.dark-mode .score-help-icon:hover {
+            background-color: #64B5F6;
+        }
+
+        .score-tooltip {
+            display: none;
+            position: absolute;
+            bottom: 100%;
+            right: 0;
+            background: white;
+            border: 1px solid #e0e0e0;
+            border-radius: 8px;
+            padding: 15px;
+            margin-bottom: 10px;
+            min-width: 300px;
+            max-width: 350px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+            z-index: 1001;
+            font-size: 13px;
+            line-height: 1.6;
+        }
+
+        /* 气泡位置调整类 */
+        .score-tooltip.tooltip-bottom {
+            bottom: auto;
+            top: calc(100% + 10px);
+        }
+
+        .score-tooltip.tooltip-left {
+            right: auto;
+            left: -350px;
+        }
+
+        .score-tooltip.tooltip-right {
+            left: auto;
+            right: -350px;
+        }
+
+        html.dark-mode .score-tooltip {
+            background: #3c3c3c;
+            border-color: #444;
+            color: #e0e0e0;
+        }
+
+        .score-tooltip.show {
+            display: block;
+        }
+
+        .tooltip-header {
+            font-weight: bold;
+            margin-bottom: 10px;
+            border-bottom: 1px solid #e0e0e0;
+            padding-bottom: 10px;
+        }
+
+        html.dark-mode .tooltip-header {
+            border-bottom-color: #444;
+        }
+
+        .tooltip-section {
+            margin-top: 10px;
+        }
+
+        .tooltip-section-title {
+            font-weight: 600;
+            margin-bottom: 8px;
+        }
+
+        .formula-item {
+            display: flex;
+            justify-content: space-between;
+            margin: 5px 0;
+            padding-left: 10px;
+        }
+
+        .formula-equation code {
+            background-color: #f5f5f5;
+            padding: 2px 6px;
+            border-radius: 4px;
+            font-size: 12px;
+        }
+
+        html.dark-mode .formula-equation code {
+            background-color: #444;
+        }
+
+        .risk-list {
+            list-style: none;
+            padding-left: 0;
+        }
+
+        .risk-list li {
+            padding: 4px 0;
+            padding-left: 20px;
+            position: relative;
+        }
+
+        .risk-list li::before {
+            content: '•';
+            position: absolute;
+            left: 0;
+        }
+
+        /* 响应式设计 */
+        @media (max-width: 1024px) {
+            .network-cards-container {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 768px) {
+            .network-cards-container {
+                grid-template-columns: 1fr;
+            }
+
+            .ip-detail-content {
+                padding: 20px;
+                max-width: 100%;
+            }
+
+            .ip-detail-item {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 8px;
+            }
+
+            .ip-detail-label {
+                min-width: unset;
+            }
+
+            .ip-detail-value {
+                text-align: left;
+                width: 100%;
+            }
+
+            .score-tooltip {
+                position: fixed;
+                bottom: auto;
+                right: auto;
+                left: 50%;
+                top: 50%;
+                transform: translate(-50%, -50%);
+                min-width: 280px;
+                max-width: 90%;
+            }
+        }
     </style>
 </head>
 
@@ -2376,7 +3003,8 @@
                     <h1 id="pageTitle">加载中...</h1>
                 </div>
                 <div class="header-buttons">
-                    <button type="button" class="btn btn-danger btn-reset" onclick="resetConfigWithConfirm()">⚠️重置配置</button>
+                    <button type="button" class="btn btn-danger btn-reset"
+                        onclick="resetConfigWithConfirm()">⚠️重置配置</button>
                     <button type="button" class="btn btn-primary" onclick="logout()">👋退出登录</button>
                 </div>
             </div>
@@ -2424,7 +3052,76 @@
                         <div class="cf-info-box">
                             <div class="cf-info-icon">ℹ️</div>
                             <div class="cf-info-text">
-                                <strong>每日请求数重置清零：</strong><br><span id="countdown" class="cf-highlight">距离重置还有 15小时24分 34秒</span>，<br>北京时间 (UTC+8)  <strong class="cf-highlight">8:00</strong>重置，<br>今日使用情况总计：<strong class="cf-highlight"id="cfTotalDisplay">-</strong>。
+                                <strong>每日请求数重置清零：</strong><br><span id="countdown" class="cf-highlight">距离重置还有 15小时24分
+                                    34秒</span>，<br>北京时间 (UTC+8) <strong
+                                    class="cf-highlight">8:00</strong>重置，<br>今日使用情况总计：<strong class="cf-highlight"
+                                    id="cfTotalDisplay">-</strong>。
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 网络信息模块 -->
+            <div class="module">
+                <div class="module-title">
+                    🌍 当前网络信息
+                </div>
+                <div class="module-content">
+                    <div class="network-cards-container">
+                        <div class="network-card">
+                            <div class="network-card-title">
+                                <span class="status-indicator" id="status-ipip"></span>
+                                国内测试
+                            </div>
+                            <div class="network-info-content">
+                                <span id="ipip-ip" class="ip-text">-</span>
+                                <div class="location-text">
+                                    <span id="ipip-country" class="country-text">-</span>
+                                </div>
+                                <div class="network-tip">· 您访问国内网站所使用的IP</div>
+                            </div>
+                        </div>
+
+                        <div class="network-card">
+                            <div class="network-card-title">
+                                <span class="status-indicator" id="status-edgeone"></span>
+                                国外测试
+                            </div>
+                            <div class="network-info-content">
+                                <span id="edgeone-ip" class="ip-text">-</span>
+                                <div class="location-text">
+                                    <span id="edgeone-country" class="country-text">-</span>
+                                </div>
+                                <div class="network-tip">· 您访问没有被封的国外网站所使用的IP</div>
+                            </div>
+                        </div>
+
+                        <div class="network-card">
+                            <div class="network-card-title">
+                                <span class="status-indicator" id="status-cf"></span>
+                                CloudFlare(ProxyIP)
+                            </div>
+                            <div class="network-info-content">
+                                <span id="cf-ip" class="ip-text">-</span>
+                                <div class="location-text">
+                                    <span id="cf-country" class="country-text">-</span>
+                                </div>
+                                <div class="network-tip">· 您访问CFCDN网站所使用的落地IP</div>
+                            </div>
+                        </div>
+
+                        <div class="network-card">
+                            <div class="network-card-title">
+                                <span class="status-indicator" id="status-twitter"></span>
+                                Twitter/X
+                            </div>
+                            <div class="network-info-content">
+                                <span id="twitter-ip" class="ip-text">-</span>
+                                <div class="location-text">
+                                    <span id="twitter-country" class="country-text">-</span>
+                                </div>
+                                <div class="network-tip">· 您访问Twitter(x.com)等网站所使用的IP</div>
                             </div>
                         </div>
                     </div>
@@ -2875,7 +3572,8 @@
             <p class="reset-modal-description">清除 Telegram Bot 通知配置后，将无法继续接收 Telegram 消息通知。此操作不可撤销，请谨慎操作。</p>
             <p class="reset-modal-confirm">确定是否清除 Telegram 通知配置？</p>
             <div class="reset-modal-buttons">
-                <button type="button" class="btn btn-primary btn-confirm-reset" onclick="confirmClearTelegramConfig()">确定清除</button>
+                <button type="button" class="btn btn-primary btn-confirm-reset"
+                    onclick="confirmClearTelegramConfig()">确定清除</button>
                 <button type="button" class="btn btn-secondary" onclick="closeClearTelegramModal()">取消</button>
             </div>
         </div>
@@ -2888,7 +3586,8 @@
             <p class="reset-modal-description">清除 Cloudflare 配置后，将无法继续统计 Workers/Pages 的请求数。此操作不可撤销，请谨慎操作。</p>
             <p class="reset-modal-confirm">确定是否清除 Cloudflare 通知配置？</p>
             <div class="reset-modal-buttons">
-                <button type="button" class="btn btn-primary btn-confirm-reset" onclick="confirmClearCloudflareConfig()">确定清除</button>
+                <button type="button" class="btn btn-primary btn-confirm-reset"
+                    onclick="confirmClearCloudflareConfig()">确定清除</button>
                 <button type="button" class="btn btn-secondary" onclick="closeClearCloudflareModal()">取消</button>
             </div>
         </div>
@@ -2983,7 +3682,7 @@
                 <div class="form-group subapi-form-group">
                     <label>API Token</label>
                     <input type="password" id="cloudflareAPIToken" placeholder="输入API Token">
-                    <small style="font-size: 12px; color: #9ca3af; margin-top: 6px; display: block;">💡 API 令牌权限使用"阅读分析数据和日志"模板即可</small>
+                    <small style="font-size: 12px; color: #9ca3af; margin-top: 6px; display: block;">💡 API令牌权限 使用 "阅读分析数据和日志" 模板即可</small>
                 </div>
             </div>
 
@@ -3042,9 +3741,9 @@
 
                 <div class="form-group">
                     <label for="optimizeConcurrency">测试线程数：</label>
-                    <input type="number" id="optimizeConcurrency" min="1" max="32" value="8" 
-                        class="optimize-concurrency-input" placeholder="1-32" 
-                        oninput="validateConcurrency(this)" onchange="validateConcurrency(this)">
+                    <input type="number" id="optimizeConcurrency" min="1" max="32" value="8"
+                        class="optimize-concurrency-input" placeholder="1-32" oninput="validateConcurrency(this)"
+                        onchange="validateConcurrency(this)">
                 </div>
             </div>
 
@@ -3059,7 +3758,7 @@
 
             <!-- 结果内容 -->
             <div id="optimizeResultsContent" class="optimize-results-content hidden-section"></div>
-            
+
             <!-- 按钮组 -->
             <div class="optimize-buttons">
                 <span class="save-tip">💡 保存提示：仅保存延迟最低的前16个优选IP</span>
@@ -3093,23 +3792,24 @@
             <div class="api-form-group">
                 <div class="api-form-row">
                     <label>默认端口:</label>
-                    <input type="number" id="apiOptimizePort" value="443" min="1" max="65535" 
-                        placeholder="1-65535" title="默认端口(1-65535)">
+                    <input type="number" id="apiOptimizePort" value="443" min="1" max="65535" placeholder="1-65535"
+                        title="默认端口(1-65535)">
                 </div>
             </div>
 
             <!-- 结果显示区域 -->
             <div class="api-results-container">
                 <label class="api-results-label">接口结果:</label>
-                <textarea id="apiOptimizeResults" class="api-results-textarea" readonly placeholder="接口返回结果将显示在这里，每行一个地址"></textarea>
+                <textarea id="apiOptimizeResults" class="api-results-textarea" readonly
+                    placeholder="接口返回结果将显示在这里，每行一个地址"></textarea>
             </div>
 
             <!-- 按钮组 -->
             <div class="api-buttons">
                 <button type="button" class="btn btn-verify-api" id="btnVerifyAPI"
                     onclick="verifyAPIOptimize()">可用性验证</button>
-                <button type="button" class="btn btn-append-api" id="btnAppendAPI"
-                    onclick="appendAPIToCustom()" disabled>追加API</button>
+                <button type="button" class="btn btn-append-api" id="btnAppendAPI" onclick="appendAPIToCustom()"
+                    disabled>追加API</button>
                 <button type="button" class="btn btn-append-results" id="btnAppendResults"
                     onclick="appendResultsToCustom()" disabled>追加结果</button>
                 <button type="button" class="btn btn-close-api" onclick="closeAPIOptimizeModal()">关闭</button>
@@ -3611,6 +4311,12 @@
             if (isCollapsed) {
                 // Expand
                 content.style.display = 'block';
+
+                // 检查是否是网络模块，如果是则加载数据
+                if (module.querySelector('.network-cards-container') && !networkInfoLoaded) {
+                    loadNetworkInfo();
+                }
+
                 // Measure height
                 const height = content.scrollHeight;
                 // Start from 0
@@ -3862,7 +4568,7 @@
             try {
                 const response = await fetch('/admin/config.json', {
                     method: 'POST',
-                    headers: { 
+                    headers: {
                         'Content-Type': 'application/json',
                         'Cache-Control': 'no-cache, no-store, must-revalidate',
                         'Pragma': 'no-cache',
@@ -3940,8 +4646,8 @@
             const states = {};
             document.querySelectorAll('.module').forEach((module, index) => {
                 const title = module.querySelector('.module-title')?.textContent?.trim() || ('module-' + index);
-                // 不保存"查看操作日志"模块的状态
-                if (title !== '📋 查看操作日志') {
+                // 不保存"查看操作日志"和"当前网络信息"模块的状态
+                if (title !== '📋 查看操作日志' && title !== '🌍 当前网络信息') {
                     states[title] = !module.classList.contains('collapsed');
                 }
             });
@@ -3960,9 +4666,11 @@
                 const title = module.querySelector('.module-title')?.textContent?.trim() || ('module-' + index);
                 let shouldBeExpanded;
 
-                // "查看操作日志"模块始终保持折叠状态
+                // "查看操作日志"模块始终保持折叠状态，"当前网络信息"模块始终展开
                 if (title === '📋 查看操作日志') {
                     shouldBeExpanded = false;
+                } else if (title === '🌍 当前网络信息') {
+                    shouldBeExpanded = true;
                 } else {
                     shouldBeExpanded = isFirstVisit ? false : (states[title] !== false); // 第一次默认折叠，之后按保存的状态
                 }
@@ -5008,7 +5716,7 @@
             try {
                 const urlObj = new URL(urlInput);
                 const portParam = urlObj.searchParams.get('port');
-                
+
                 if (portParam) {
                     // 检测到port参数，验证并规范化
                     const normalizedPort = validateAndNormalizePort(portParam);
@@ -5046,25 +5754,25 @@
             // 检测和提取URL中的port参数
             let detectedPort = null;
             let cleanURL = urlInput;
-            
+
             try {
                 const urlObj = new URL(urlInput);
                 const portParam = urlObj.searchParams.get('port');
-                
+
                 if (portParam) {
                     // 识别到port参数
                     detectedPort = validateAndNormalizePort(portParam);
-                    
+
                     // 移除port参数
                     urlObj.searchParams.delete('port');
                     cleanURL = urlObj.toString();
-                    
+
                     // 更新URL输入框（移除port参数）
                     document.getElementById('apiOptimizeURL').value = cleanURL;
-                    
+
                     // 更新端口输入框
                     document.getElementById('apiOptimizePort').value = detectedPort;
-                    
+
                     showToast(`✅ 已自动识别URL中的端口号: ${detectedPort}，并已移除port参数`, 'success');
                 }
             } catch (error) {
@@ -5145,7 +5853,7 @@
 
             const customIPsTextarea = document.getElementById('customIPs');
             const currentValue = customIPsTextarea.value.trim();
-            
+
             // 追加到文本框
             if (currentValue) {
                 customIPsTextarea.value = currentValue + '\n' + completeURL;
@@ -5172,7 +5880,7 @@
 
             const customIPsTextarea = document.getElementById('customIPs');
             const currentValue = customIPsTextarea.value.trim();
-            
+
             // 追加到文本框
             if (currentValue) {
                 customIPsTextarea.value = currentValue + '\n' + results;
@@ -5282,13 +5990,13 @@
                 const ipLibrary = document.getElementById('optimizeIPLibrary').value;
                 const port = document.getElementById('optimizePort').value;
                 let concurrency = parseInt(document.getElementById('optimizeConcurrency').value) || 8;
-                
+
                 // 验证并发线程数
                 if (isNaN(concurrency) || concurrency < 1 || concurrency > 32) {
                     concurrency = 8;
                     document.getElementById('optimizeConcurrency').value = '8';
                 }
-                
+
                 console.log(`[在线优选] 步骤2: 用户选择 - IP库: ${ipLibrary}, 端口: ${port}, 并发线程: ${concurrency}`);
                 currentIPLibrary = ipLibrary; // 保存当前IP库类型
 
@@ -5769,7 +6477,7 @@
             // 默认只显示前16个，可通过showAll参数显示全部
             const displayCount = showAll ? results.length : Math.min(16, results.length);
             const displayResults = results.slice(0, displayCount);
-            
+
             const html = displayResults.map(r => {
                 // 根据延迟时间确定颜色
                 let color = '#10b981'; // 100ms以下绿色
@@ -5783,7 +6491,7 @@
             }).join('');
 
             let finalHtml = html;
-            
+
             // 如果有更多结果且未展开，添加展开按钮
             if (!showAll && results.length > 16) {
                 finalHtml += `<div style="margin-top: 15px; text-align: center;">
@@ -5847,6 +6555,757 @@
         // 启动倒计时更新
         setInterval(updateCountdown, 1000);
         updateCountdown(); // 立即执行一次
+
+        // ==================== 网络信息相关函数 ====================
+
+        // 设置状态指示器
+        function setStatus(id, status) {
+            const indicator = document.getElementById(id);
+            if (indicator) {
+                indicator.className = 'status-indicator status-' + status;
+            }
+        }
+
+        // 获取国内测试数据 (遍历多个 API: speedtest.cn > ipipv.com > ipip.net)
+        async function fetchIpipData() {
+            setStatus('status-ipip', 'loading');
+
+            // 获取标题元素,用于动态更新 API 来源
+            const titleElement = document.querySelector('#status-ipip').parentElement;
+
+            // 定义 API 配置列表,按优先级排序
+            const apiConfigs = [
+                {
+                    name: 'speedtest.cn',
+                    url: 'https://api-v3.speedtest.cn/ip',
+                    parser: (data) => {
+                        if (data.code === 0 && data.data) {
+                            return {
+                                ip: data.data.ip || '未知',
+                                country: data.data.country || '未知',
+                                city: data.data.city || '未知'
+                            };
+                        }
+                        throw new Error('数据格式错误');
+                    }
+                },
+                {
+                    name: 'ipipv.com',
+                    url: 'https://myip.ipipv.com/',
+                    parser: (data) => {
+                        return {
+                            ip: data.Ip || '未知',
+                            country: data.Country || '未知',
+                            city: data.City || '未知'
+                        };
+                    }
+                },
+                {
+                    name: 'ipip.net',
+                    url: 'https://myip.ipip.net/json',
+                    parser: (data) => {
+                        if (data.ret === 'ok' && data.data) {
+                            return {
+                                ip: data.data.ip || '未知',
+                                country: data.data.location[0] || '未知',
+                                city: data.data.location[2] || '未知'
+                            };
+                        }
+                        throw new Error('数据格式错误');
+                    }
+                }
+            ];
+
+            // 遍历 API 配置列表
+            for (const config of apiConfigs) {
+                try {
+                    // 添加时间戳参数避免缓存
+                    const timestamp = Date.now();
+                    const url = config.url + (config.url.includes('?') ? '&' : '?') + `_t=${timestamp}`;
+                    const response = await fetch(url);
+                    const data = await response.json();
+
+                    // 使用对应的解析器解析数据
+                    const result = config.parser(data);
+
+                    // 更新页面显示
+                    document.getElementById('ipip-ip').textContent = result.ip;
+                    document.getElementById('ipip-country').textContent = result.country + ' ' + result.city;
+                    setStatus('status-ipip', 'success');
+
+                    // 更新标题显示当前使用的 API
+                    if (titleElement) {
+                        titleElement.innerHTML = `<span class="status-indicator" id="status-ipip"></span>国内测试(${config.name})`;
+                        setStatus('status-ipip', 'success'); // 重新设置状态,因为 innerHTML 会清除
+                    }
+
+                    console.log(`使用 ${config.name} API 成功`);
+                    return; // 成功则返回,不再尝试其他 API
+
+                } catch (error) {
+                    console.warn(`${config.name} 接口失败:`, error);
+                    // 继续尝试下一个 API
+                }
+            }
+
+            // 所有 API 都失败
+            document.getElementById('ipip-ip').innerHTML = '<span class="error">加载失败</span>';
+            document.getElementById('ipip-country').textContent = '';
+            document.getElementById('ipip-city').textContent = '';
+            setStatus('status-ipip', 'error');
+            console.error('所有国内测试 API 都失败');
+        }
+
+        // 获取 EdgeOne 数据
+        async function fetchEdgeOneData() {
+            setStatus('status-edgeone', 'loading');
+            try {
+                const response = await fetch(`https://api.ipapi.cmliussss.net`);
+                const data = await response.json();
+
+                document.getElementById('edgeone-ip').textContent = data.ip || '未知';
+                document.getElementById('edgeone-country').textContent = `${data.location.country_code} AS${data.asn.asn} ${data.asn.org}` || '未知';
+                setStatus('status-edgeone', 'success');
+            } catch (error) {
+                document.getElementById('edgeone-ip').innerHTML = '<span class="error">加载失败</span>';
+                document.getElementById('edgeone-country').textContent = '';
+                setStatus('status-edgeone', 'error');
+                console.error('EdgeOne 接口错误:', error);
+            }
+        }
+
+        // 获取 CloudFlare 数据
+        async function fetchCloudFlareData() {
+            setStatus('status-cf', 'loading');
+            try {
+                const timestamp = Date.now();
+                const response = await fetch(`https://cf.090227.xyz/ip.json?_t=${timestamp}`);
+                const data = await response.json();
+
+                document.getElementById('cf-ip').textContent = data.ip || '未知';
+                document.getElementById('cf-country').textContent = data.country + ' ' + data.org || '未知';
+                setStatus('status-cf', 'success');
+            } catch (error) {
+                document.getElementById('cf-ip').innerHTML = '<span class="error">加载失败</span>';
+                document.getElementById('cf-country').textContent = '';
+                setStatus('status-cf', 'error');
+                console.error('CloudFlare 接口错误:', error);
+            }
+        }
+
+        // 获取推特入口数据
+        async function fetchTwitterData() {
+            setStatus('status-twitter', 'loading');
+            try {
+                const timestamp = Date.now();
+                const response = await fetch(`https://x.com/cdn-cgi/trace?_t=${timestamp}`);
+                const text = await response.text();
+
+                // 解析文本格式的响应 (key=value 格式,每行一个)
+                const data = {};
+                text.split('\n').forEach(line => {
+                    const [key, value] = line.split('=');
+                    if (key && value) {
+                        data[key.trim()] = value.trim();
+                    }
+                });
+
+                document.getElementById('twitter-ip').textContent = data.ip || '未知';
+                document.getElementById('twitter-country').textContent = data.loc + ' ' + data.colo || '未知';
+                setStatus('status-twitter', 'success');
+            } catch (error) {
+                document.getElementById('twitter-ip').innerHTML = '<span class="error">加载失败</span>';
+                document.getElementById('twitter-country').textContent = '';
+                setStatus('status-twitter', 'error');
+                console.error('推特入口接口错误:', error);
+            }
+        }
+
+        // 网络信息加载标志
+        let networkInfoLoaded = false;
+
+        // 加载网络信息
+        async function loadNetworkInfo() {
+            // 检查容器是否存在
+            const container = document.querySelector('.network-cards-container');
+            if (!container) return;
+
+            // 设置加载标志
+            networkInfoLoaded = true;
+
+            // 并行获取所有网络信息
+            await Promise.all([
+                fetchIpipData(),
+                fetchEdgeOneData(),
+                fetchCloudFlareData(),
+                fetchTwitterData()
+            ]);
+
+            // 所有网络信息加载完成后,使 IP 可点击
+            setTimeout(() => {
+                makeIpClickable();
+            }, 500);
+        }
+
+        // 页面加载时自动获取网络信息（因为模块现在默认展开）
+        if (document.readyState !== 'loading') {
+            // 页面已加载，直接加载数据
+            loadNetworkInfo();
+        } else {
+            // 页面还在加载，等待加载完成
+            document.addEventListener('DOMContentLoaded', () => {
+                loadNetworkInfo();
+            });
+        }
+
+        // IP 点击查询详情功能
+        function makeIpClickable() {
+            const ipElements = document.querySelectorAll('.ip-text');
+
+            ipElements.forEach(element => {
+                const ipText = element.textContent.trim();
+
+                // 跳过已经标记为错误、加载中、未知的元素
+                if (element.querySelector('.error') ||
+                    ipText === '加载中...' ||
+                    ipText === '未知' ||
+                    element.classList.contains('clickable')) {
+                    return;
+                }
+
+                // 添加可点击样式
+                element.classList.add('clickable');
+
+                element.addEventListener('click', async function () {
+                    let ipText = this.textContent.trim();
+
+                    // 移除可能存在的加载动画
+                    const existingSpinner = this.querySelector('.loading-spinner');
+                    if (existingSpinner) {
+                        return; // 正在加载中,不重复请求
+                    }
+
+                    // 跳过显示"加载中..."或"未知"的元素
+                    if (ipText === '加载中...' || ipText === '未知') {
+                        return;
+                    }
+
+                    // 将 * 替换为 0
+                    const cleanIp = ipText.replace(/\*/g, '0');
+
+                    // 添加加载动画
+                    const spinner = document.createElement('span');
+                    spinner.className = 'loading-spinner';
+                    this.appendChild(spinner);
+
+                    try {
+                        const response = await fetch(`https://api.ipapi.cmliussss.net/?ip=${cleanIp}`);
+
+                        if (!response.ok) {
+                            throw new Error('查询失败');
+                        }
+
+                        const data = await response.json();
+
+                        // 移除加载动画
+                        spinner.remove();
+
+                        // 显示详情弹窗
+                        showIpDetailModal(data);
+
+                    } catch (error) {
+                        // 移除加载动画
+                        spinner.remove();
+
+                        // 显示错误提示
+                        showToast('❌ 查询IP详细信息失败');
+                        console.error('IP查询错误:', error);
+                    }
+                });
+            });
+        }
+
+        // 将布尔值转换为 emoji
+        function boolToEmoji(value, trueEmoji = '✅', falseEmoji = '❌') {
+            return value ? trueEmoji : falseEmoji;
+        }
+
+        // 将 IP 类型转换为中文并添加样式
+        function formatIpType(type) {
+            if (!type) return '<span class="ip-type-unknown">未知</span>';
+
+            const typeMap = {
+                'isp': { text: '住宅', class: 'ip-type-residential' },
+                'hosting': { text: '机房', class: 'ip-type-hosting' },
+                'business': { text: '商用', class: 'ip-type-business' }
+            };
+
+            const typeInfo = typeMap[type.toLowerCase()] || { text: type, class: 'ip-type-unknown' };
+            return `<span class="${typeInfo.class}">${typeInfo.text}</span>`;
+        }
+
+        // 获取威胁等级的样式类
+        function getThreatBadgeClass(score) {
+            if (!score) return 'badge-info';
+
+            const numScore = parseFloat(score);
+            if (numScore < 0.001) return 'badge-success';
+            if (numScore < 0.01) return 'badge-info';
+            if (numScore < 0.1) return 'badge-warning';
+            return 'badge-danger';
+        }
+
+        // 计算综合滥用评分
+        function calculateAbuseScore(companyScore, asnScore, securityFlags = {}) {
+            // 如果两个分数都无效，返回null
+            if (!companyScore || companyScore === '未知') companyScore = 0;
+            if (!asnScore || asnScore === '未知') asnScore = 0;
+
+            const company = parseFloat(companyScore) || 0;
+            const asn = parseFloat(asnScore) || 0;
+
+            // 计算基础评分：(company + asn) / 2 * 5
+            let baseScore = ((company + asn) / 2) * 5;
+
+            // 计算安全风险附加分：每个安全风险项增加 20%
+            let riskAddition = 0;
+            const riskFlags = [
+                securityFlags.is_crawler,   // 爬虫
+                securityFlags.is_proxy,     // 代理服务器
+                securityFlags.is_vpn,       // VPN
+                securityFlags.is_tor,       // Tor 网络
+                securityFlags.is_abuser,    // 滥用 IP
+                securityFlags.is_bogon      // 虚假 IP
+            ];
+
+            // 统计为 true 的风险项数量
+            const riskCount = riskFlags.filter(flag => flag === true).length;
+            riskAddition = riskCount * 0.15; // 每个风险项增加 15%
+
+            // 最终评分 = 基础评分 + 风险附加分
+            const finalScore = baseScore + riskAddition;
+
+            // 如果基础评分和风险附加分都是0，返回null
+            if (baseScore === 0 && riskAddition === 0) return null;
+
+            return finalScore;
+        }
+
+        // 获取滥用评分的颜色等级
+        function getAbuseScoreBadgeClass(percentage) {
+            if (percentage === null || percentage === undefined) return 'badge-info';
+
+            if (percentage >= 100) return 'badge-critical';      // 危险红色 >= 100%
+            if (percentage >= 20) return 'badge-high';           // 橘黄色 15-99.99%
+            if (percentage >= 5) return 'badge-elevated';     // 黄色 5-14.99%
+            if (percentage >= 0.25) return 'badge-low';          // 淡绿色 0.25-4.99%
+            return 'badge-verylow';                              // 绿色 < 0.25%
+        }
+
+        // 格式化滥用评分为百分比
+        function formatAbuseScorePercentage(score) {
+            if (score === null || score === undefined) return '未知';
+
+            const percentage = score * 100;
+            return percentage.toFixed(2) + '%';
+        }
+
+        // 切换评分算法说明气泡
+        function toggleScoreTooltip(helpIcon) {
+            const tooltip = helpIcon.nextElementSibling;
+            const isShowing = tooltip.classList.contains('show');
+
+            // 隐藏所有其他气泡
+            document.querySelectorAll('.score-tooltip.show').forEach(t => {
+                if (t !== tooltip) t.classList.remove('show');
+            });
+
+            // 切换当前气泡
+            tooltip.classList.toggle('show');
+
+            // 如果显示气泡，调整位置并添加点击事件监听器来关闭它
+            if (!isShowing) {
+                setTimeout(() => {
+                    adjustTooltipPosition(tooltip);
+
+                    const closeTooltip = (e) => {
+                        if (!tooltip.contains(e.target) && !helpIcon.contains(e.target)) {
+                            tooltip.classList.remove('show');
+                            document.removeEventListener('click', closeTooltip);
+                        }
+                    };
+                    document.addEventListener('click', closeTooltip);
+                }, 100);
+            }
+        }
+
+        // 调整气泡位置，避免超出屏幕
+        function adjustTooltipPosition(tooltip) {
+            // 移除之前的位置调整类
+            tooltip.classList.remove('tooltip-bottom', 'tooltip-top', 'tooltip-left', 'tooltip-right');
+
+            const rect = tooltip.getBoundingClientRect();
+            const windowHeight = window.innerHeight;
+            const windowWidth = window.innerWidth;
+
+            // 检查气泡是否超出顶部
+            if (rect.top < 20) {
+                tooltip.classList.add('tooltip-bottom');
+                tooltip.style.bottom = 'auto';
+                tooltip.style.top = 'calc(100% + 10px)';
+            }
+            // 检查气泡是否超出右边
+            else if (rect.right > windowWidth - 20) {
+                tooltip.style.right = 'auto';
+                tooltip.style.left = 'auto';
+                tooltip.style.transform = 'translateX(-100%)';
+            }
+            // 检查气泡是否超出左边
+            else if (rect.left < 20) {
+                tooltip.style.left = '0';
+                tooltip.style.right = 'auto';
+                tooltip.style.transform = 'translateX(0)';
+            }
+        }
+
+        // 显示 IP 详情弹窗
+        function showIpDetailModal(data) {
+            // 创建弹窗
+            const modal = document.createElement('div');
+            modal.className = 'ip-detail-modal';
+
+            // 计算综合滥用评分（风控值）
+            const companyScore = data.company?.abuser_score;
+            const asnScore = data.asn?.abuser_score;
+
+            // 收集安全风险标志
+            const securityFlags = {
+                is_crawler: data.is_crawler,
+                is_proxy: data.is_proxy,
+                is_vpn: data.is_vpn,
+                is_tor: data.is_tor,
+                is_abuser: data.is_abuser,
+                is_bogon: data.is_bogon
+            };
+
+            const combinedScore = calculateAbuseScore(companyScore, asnScore, securityFlags);
+
+            let riskControlHTML = '';
+            if (combinedScore !== null) {
+                const scorePercentage = combinedScore * 100;
+                const badgeClass = getAbuseScoreBadgeClass(scorePercentage);
+                const formattedScore = formatAbuseScorePercentage(combinedScore);
+
+                // 根据百分比确定风险等级文本
+                let riskLevel = '';
+                if (scorePercentage >= 100) riskLevel = '极度危险';
+                else if (scorePercentage >= 20) riskLevel = '高风险';
+                else if (scorePercentage >= 5) riskLevel = '轻微风险';
+                else if (scorePercentage >= 0.25) riskLevel = '纯净';
+                else riskLevel = '极度纯净';
+
+                riskControlHTML = `
+                    <span class="ip-detail-badge ${badgeClass}">${formattedScore} ${riskLevel}</span>
+                `;
+            } else {
+                riskControlHTML = '未知';
+            }
+
+            // 构建详情内容
+            let detailHTML = `
+                <div class="ip-detail-content">
+                    <button class="ip-detail-close" onclick="this.closest('.ip-detail-modal').remove()">×</button>
+                    <div class="ip-detail-title">
+                        🔍 IP 详细信息
+                        <span class="ip-detail-source">数据来源: ipapi.is</span>
+                    </div>
+            `;
+
+            // 基本信息
+            detailHTML += `
+                <div class="ip-detail-section">
+                    <div class="ip-detail-section-title">📍 基本信息</div>
+                    <div class="ip-detail-item">
+                        <span class="ip-detail-label">IP 地址</span>
+                        <span class="ip-detail-value">${data.ip || '未知'}</span>
+                    </div>
+                    <div class="ip-detail-item">
+                        <span class="ip-detail-label">区域互联网注册机构</span>
+                        <span class="ip-detail-value">${data.rir || '未知'}</span>
+                    </div>
+                    <div class="ip-detail-item">
+                        <span class="ip-detail-label">运营商 / ASN 类型</span>
+                        <span class="ip-detail-value">${formatIpType(data.company?.type)} / ${formatIpType(data.asn?.type)}</span>
+                    </div>
+                    <div class="ip-detail-item">
+                        <span class="ip-detail-label">
+                            综合滥用评分
+                            <span class="score-help-icon" onclick="event.stopPropagation(); toggleScoreTooltip(this);" title="点击查看算法说明">?</span>
+                            <span class="score-tooltip">
+                                <div class="tooltip-header">
+                                    <span class="tooltip-title">📊 综合滥用评分算法</span>
+                                </div>
+                                <div class="tooltip-section">
+                                    <p class="tooltip-section-title">评分公式</p>
+                                    <div class="formula-item">
+                                        <span class="formula-name">基础分</span>
+                                        <span class="formula-equation"><code>(运营商分 + ASN分) / 2 * 5</code></span>
+                                    </div>
+                                    <div class="formula-item">
+                                        <span class="formula-name">风险附加</span>
+                                        <span class="formula-equation"><code>风险项数量 * 15%</code></span>
+                                    </div>
+                                </div>
+                                <div class="tooltip-section">
+                                    <p class="tooltip-section-title">安全风险项</p>
+                                    <ul class="risk-list">
+                                        <li>爬虫 (Crawler)</li>
+                                        <li>代理 (Proxy)</li>
+                                        <li>VPN</li>
+                                        <li>Tor 网络</li>
+                                        <li>滥用IP (Abuser)</li>
+                                        <li>虚假IP (Bogon)</li>
+                                    </ul>
+                                </div>
+                            </span>
+                        </span>
+                        <span class="ip-detail-value">${riskControlHTML}</span>
+                    </div>
+                </div>
+            `;
+
+            // 安全检测
+            detailHTML += `
+                <div class="ip-detail-section">
+                    <div class="ip-detail-section-title">🛡️ 安全检测</div>
+                    <div class="ip-detail-item">
+                        <span class="ip-detail-label">移动网络</span>
+                        <span class="ip-detail-value">${data.is_mobile ? '<span class="success-text">📱 是</span>' : '否'}</span>
+                    </div>
+                    <div class="ip-detail-item">
+                        <span class="ip-detail-label">数据中心</span>
+                        <span class="ip-detail-value">${data.is_datacenter ? '<span class="warning-text">🏢 是</span>' : '否'}</span>
+                    </div>
+                    <div class="ip-detail-item">
+                        <span class="ip-detail-label">卫星网络</span>
+                        <span class="ip-detail-value">${data.is_satellite ? '<span class="success-text">🛰️ 是</span>' : '否'}</span>
+                    </div>
+                    <div class="ip-detail-item">
+                        <span class="ip-detail-label">爬虫</span>
+                        <span class="ip-detail-value">${data.is_crawler ? '<span class="danger-text">🤖 是</span>' : '✅ 否'}</span>
+                    </div>
+                    <div class="ip-detail-item">
+                        <span class="ip-detail-label">代理服务器</span>
+                        <span class="ip-detail-value">${data.is_proxy ? '<span class="danger-text">⚠️ 是</span>' : '✅ 否'}</span>
+                    </div>
+                    <div class="ip-detail-item">
+                        <span class="ip-detail-label">VPN</span>
+                        <span class="ip-detail-value">${data.is_vpn ? '<span class="danger-text">⚠️ 是</span>' : '✅ 否'}</span>
+                    </div>
+                    <div class="ip-detail-item">
+                        <span class="ip-detail-label">Tor 网络</span>
+                        <span class="ip-detail-value">${data.is_tor ? '<span class="danger-text">⚠️ 是</span>' : '✅ 否'}</span>
+                    </div>
+                    <div class="ip-detail-item">
+                        <span class="ip-detail-label">滥用 IP</span>
+                        <span class="ip-detail-value">${data.is_abuser ? '<span class="danger-text">⚠️ 是</span>' : '✅ 否'}</span>
+                    </div>
+                    <div class="ip-detail-item">
+                        <span class="ip-detail-label">虚假 IP</span>
+                        <span class="ip-detail-value">${data.is_bogon ? '<span class="danger-text">⚠️ 是</span>' : '✅ 否'}</span>
+                    </div>
+                </div>
+            `;
+
+            // 位置信息
+            if (data.location) {
+                detailHTML += `
+                    <div class="ip-detail-section">
+                        <div class="ip-detail-section-title">🌍 位置信息</div>
+                        <div class="ip-detail-item">
+                            <span class="ip-detail-label">国家</span>
+                            <span class="ip-detail-value">${data.location.country || '未知'} (${data.location.country_code || '-'})</span>
+                        </div>
+                        ${data.location.state ? `
+                        <div class="ip-detail-item">
+                            <span class="ip-detail-label">省份/州</span>
+                            <span class="ip-detail-value">${data.location.state}</span>
+                        </div>
+                        ` : ''}
+                        ${data.location.city ? `
+                        <div class="ip-detail-item">
+                            <span class="ip-detail-label">城市</span>
+                            <span class="ip-detail-value">${data.location.city}</span>
+                        </div>
+                        ` : ''}
+                        ${data.location.zip ? `
+                        <div class="ip-detail-item">
+                            <span class="ip-detail-label">邮编</span>
+                            <span class="ip-detail-value">${data.location.zip}</span>
+                        </div>
+                        ` : ''}
+                        ${data.location.latitude && data.location.longitude ? `
+                        <div class="ip-detail-item">
+                            <span class="ip-detail-label">坐标</span>
+                            <span class="ip-detail-value">${data.location.latitude}, ${data.location.longitude}</span>
+                        </div>
+                        ` : ''}
+                        ${data.location.timezone ? `
+                        <div class="ip-detail-item">
+                            <span class="ip-detail-label">时区</span>
+                            <span class="ip-detail-value">${data.location.timezone}</span>
+                        </div>
+                        ` : ''}
+                        ${data.location.local_time ? `
+                        <div class="ip-detail-item">
+                            <span class="ip-detail-label">当地时间</span>
+                            <span class="ip-detail-value">${data.location.local_time}</span>
+                        </div>
+                        ` : ''}
+                        <div class="ip-detail-item">
+                            <span class="ip-detail-label">欧盟成员</span>
+                            <span class="ip-detail-value">${boolToEmoji(data.location.is_eu_member, '🇪🇺 是', '否')}</span>
+                        </div>
+                    </div>
+                `;
+            }
+
+            // 运营商信息
+            if (data.company) {
+                const abuserScore = data.company.abuser_score || '未知';
+                const badgeClass = getThreatBadgeClass(abuserScore);
+
+                detailHTML += `
+                    <div class="ip-detail-section">
+                        <div class="ip-detail-section-title">🏢 运营商信息</div>
+                        <div class="ip-detail-item">
+                            <span class="ip-detail-label">运营商名称</span>
+                            <span class="ip-detail-value">${data.company.name || '未知'}</span>
+                        </div>
+                        ${data.company.domain ? `
+                        <div class="ip-detail-item">
+                            <span class="ip-detail-label">域名</span>
+                            <span class="ip-detail-value">${data.company.domain}</span>
+                        </div>
+                        ` : ''}
+                        <div class="ip-detail-item">
+                            <span class="ip-detail-label">类型</span>
+                            <span class="ip-detail-value">${data.company.type || '未知'}</span>
+                        </div>
+                        ${data.company.network ? `
+                        <div class="ip-detail-item">
+                            <span class="ip-detail-label">网络范围</span>
+                            <span class="ip-detail-value">${data.company.network}</span>
+                        </div>
+                        ` : ''}
+                        <div class="ip-detail-item">
+                            <span class="ip-detail-label">滥用评分</span>
+                            <span class="ip-detail-value"><span class="ip-detail-badge ${badgeClass}">${abuserScore}</span></span>
+                        </div>
+                    </div>
+                `;
+            }
+
+            // ASN 信息
+            if (data.asn) {
+                const asnAbuserScore = data.asn.abuser_score || '未知';
+                const asnBadgeClass = getThreatBadgeClass(asnAbuserScore);
+
+                detailHTML += `
+                    <div class="ip-detail-section">
+                        <div class="ip-detail-section-title">🔢 ASN 信息</div>
+                        <div class="ip-detail-item">
+                            <span class="ip-detail-label">ASN 编号</span>
+                            <span class="ip-detail-value">AS${data.asn.asn || '未知'}</span>
+                        </div>
+                        ${data.asn.org ? `
+                        <div class="ip-detail-item">
+                            <span class="ip-detail-label">组织</span>
+                            <span class="ip-detail-value">${data.asn.org}</span>
+                        </div>
+                        ` : ''}
+                        ${data.asn.route ? `
+                        <div class="ip-detail-item">
+                            <span class="ip-detail-label">路由</span>
+                            <span class="ip-detail-value">${data.asn.route}</span>
+                        </div>
+                        ` : ''}
+                        ${data.asn.type ? `
+                        <div class="ip-detail-item">
+                            <span class="ip-detail-label">类型</span>
+                            <span class="ip-detail-value">${data.asn.type}</span>
+                        </div>
+                        ` : ''}
+                        <div class="ip-detail-item">
+                            <span class="ip-detail-label">滥用评分</span>
+                            <span class="ip-detail-value"><span class="ip-detail-badge ${asnBadgeClass}">${asnAbuserScore}</span></span>
+                        </div>
+                        ${data.asn.country ? `
+                        <div class="ip-detail-item">
+                            <span class="ip-detail-label">国家代码</span>
+                            <span class="ip-detail-value">${data.asn.country.toUpperCase()}</span>
+                        </div>
+                        ` : ''}
+                    </div>
+                `;
+            }
+
+            // 滥用联系信息
+            if (data.abuse) {
+                detailHTML += `
+                    <div class="ip-detail-section">
+                        <div class="ip-detail-section-title">📧 滥用举报联系方式</div>
+                        ${data.abuse.name ? `
+                        <div class="ip-detail-item">
+                            <span class="ip-detail-label">联系人</span>
+                            <span class="ip-detail-value">${data.abuse.name}</span>
+                        </div>
+                        ` : ''}
+                        ${data.abuse.email ? `
+                        <div class="ip-detail-item">
+                            <span class="ip-detail-label">邮箱</span>
+                            <span class="ip-detail-value">${data.abuse.email}</span>
+                        </div>
+                        ` : ''}
+                        ${data.abuse.phone ? `
+                        <div class="ip-detail-item">
+                            <span class="ip-detail-label">电话</span>
+                            <span class="ip-detail-value">${data.abuse.phone}</span>
+                        </div>
+                        ` : ''}
+                        ${data.abuse.address ? `
+                        <div class="ip-detail-item">
+                            <span class="ip-detail-label">地址</span>
+                            <span class="ip-detail-value">${data.abuse.address}</span>
+                        </div>
+                        ` : ''}
+                    </div>
+                `;
+            }
+
+            detailHTML += `</div>`;
+
+            modal.innerHTML = detailHTML;
+
+            // 点击背景关闭弹窗
+            modal.addEventListener('click', function (e) {
+                if (e.target === modal) {
+                    modal.remove();
+                }
+            });
+
+            // ESC 键关闭弹窗和气泡
+            const closeHandler = function (e) {
+                if (e.key === 'Escape') {
+                    modal.remove();
+                    document.removeEventListener('keydown', closeHandler);
+                }
+            };
+            document.addEventListener('keydown', closeHandler);
+
+            document.body.appendChild(modal);
+        }
+
     </script>
 </body>
 
